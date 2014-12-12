@@ -34,7 +34,7 @@
 
 // Define the _ts_logger macro
 #define _ts_logger(_level, _format, ...) {                                     \
-    NSAutoreleasePool *_ts_logger_pool = [[NSAutoreleasePool alloc] init];     \
+    @autoreleasepool {                                                         \
     [LCLLogFile logWithIdentifier:[LogIdentifier UTF8String]                   \
                             level:_level                                       \
                              path:__FILE__                                     \
@@ -42,7 +42,7 @@
                          function:__PRETTY_FUNCTION__                          \
                            format:_format,                                     \
                                ## __VA_ARGS__];                                \
-    [_ts_logger_pool drain];                                                   \
+    }                                                                          \
 }
 
 // Define easy to remember logging macros
